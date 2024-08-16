@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
 	cors({
-		origin: "https://study-notion-git-main-anand-huklas-projects.vercel.app" || "*" ,
+		origin: 'https://study-notion-teal-five.vercel.app' || "https://study-notion-git-main-anand-huklas-projects.vercel.app" || "*"  ,
 		credentials: true,
 	})
 );

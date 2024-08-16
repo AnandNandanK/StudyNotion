@@ -1,6 +1,6 @@
 const BASE_URL = process.env.BASE_URL || "https://studynotion-backend-02.onrender.com/api/v1"
 
-// "http://localhost:4000/api/v1"
+// "http://localhost:4000/api/v1"  OLD 
 
 // AUTH ENDPOINTS
 export const endpoints = {
