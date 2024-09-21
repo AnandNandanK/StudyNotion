@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { useSelector } from "react-redux";
@@ -16,6 +16,8 @@ function Navbar() {
   const { user } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
+
+  const mobileMenuRef = useRef(null);
 
   const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -42,9 +44,8 @@ function Navbar() {
 
   return (
     <div
-      className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
-        location.pathname !== "/" ? "bg-richblack-800" : ""
-      } transition-all duration-200`}
+      className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${location.pathname !== "/" ? "bg-richblack-800" : ""
+        } transition-all duration-200`}
     >
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
         {/* Logo */}
@@ -59,11 +60,10 @@ function Navbar() {
               <li key={index}>
                 {link.title === "Catalog" ? (
                   <div
-                    className={`group relative flex cursor-pointer items-center gap-1 ${
-                      matchRoute("/catalog/:catalogName")
+                    className={`group relative flex cursor-pointer items-center gap-1 ${matchRoute("/catalog/:catalogName")
                         ? "text-yellow-25"
                         : "text-richblack-25"
-                    }`}
+                      }`}
                   >
                     <p>{link.title}</p>
                     <BsChevronDown />
@@ -94,11 +94,10 @@ function Navbar() {
                 ) : (
                   <Link to={link?.path}>
                     <p
-                      className={`${
-                        matchRoute(link?.path)
+                      className={`${matchRoute(link?.path)
                           ? "text-yellow-25"
                           : "text-richblack-25"
-                      }`}
+                        }`}
                     >
                       {link.title}
                     </p>
@@ -147,6 +146,7 @@ function Navbar() {
         </button>
       </div>
 
+
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-14 left-0 w-full bg-richblack-900 p-4 text-richblack-25 flex flex-col space-y-4 z-50 md:hidden">
@@ -159,18 +159,16 @@ function Navbar() {
                     onClick={() => setIsCatalogOpen(!isCatalogOpen)}
                   >
                     <span
-                      className={`${
-                        matchRoute("/catalog/:catalogName")
+                      className={`${matchRoute("/catalog/:catalogName")
                           ? "text-yellow-25"
                           : "text-richblack-25"
-                      }`}
+                        }`}
                     >
                       {link.title}
                     </span>
                     <BsChevronDown
-                      className={`transition-transform duration-200 ${
-                        isCatalogOpen ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-200 ${isCatalogOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </div>
                   {isCatalogOpen && (
@@ -205,11 +203,10 @@ function Navbar() {
               ) : (
                 <Link
                   to={link.path}
-                  className={`${
-                    matchRoute(link?.path)
+                  className={`${matchRoute(link?.path)
                       ? "text-yellow-25"
                       : "text-richblack-25"
-                  }`}
+                    }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.title}
@@ -218,14 +215,18 @@ function Navbar() {
             </div>
           ))}
 
-          <div className="flex flex-col items-start gap-y-2">
+
+
+          <div className="flex flex-col items-start gap-y-2 ">
+
             {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+
               <Link
                 to="/dashboard/cart"
                 className="relative"
                 onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+              > <p className="lg:hidden md:hidden xl:hidden sm:block ">Cart</p>
+                <AiOutlineShoppingCart className="text-2xl text-richblack-100 hidden md:block lg:block xl:block" />
                 {totalItems > 0 && (
                   <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
                     {totalItems}
@@ -234,24 +235,30 @@ function Navbar() {
               </Link>
             )}
             {token === null && (
-              <>
+
+              <div className=" flex justify-center gap-4 w-full">
                 <Link
                   to="/login"
-                  className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100"
+                  className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[21px] py-[8px] text-richblack-100"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Log in
                 </Link>
                 <Link
                   to="/signup"
-                  className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100"
+                  className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[15px] py-[8px] text-richblack-100"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Sign up
                 </Link>
-              </>
+
+              </div>
+
+
             )}
+
             {token !== null && <ProfileDropdown />}
+
           </div>
         </div>
       )}

@@ -142,6 +142,7 @@ function CourseDetails() {
                 className="aspect-auto w-full"
               />
             </div>
+            
             <div
               className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}
             >

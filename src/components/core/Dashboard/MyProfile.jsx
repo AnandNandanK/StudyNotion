@@ -15,19 +15,21 @@ export default function MyProfile() {
         My Profile
       </h1>
       <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-        <div className="flex items-center gap-x-4">
+        
+        <div className="flex items-center gap-x-4 flex-col md:flex-row lg:flex-row xl:flex-row">
           <img
             src={user?.image}
             alt={`profile-${user?.firstName}`}
             className="aspect-square w-[78px] rounded-full object-cover"
           />
-          <div className="space-y-1">
+          <div className="space-y-1 flex flex-col items-center">
             <p className="text-lg font-semibold text-richblack-5">
               {user?.firstName + " " + user?.lastName}
             </p>
             <p className="text-sm text-richblack-300">{user?.email}</p>
           </div>
         </div>
+
         <IconBtn
           text="Edit"
           onclick={() => {
@@ -37,7 +39,9 @@ export default function MyProfile() {
           <RiEditBoxLine />
         </IconBtn>
       </div>
+      
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+        
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
           <IconBtn
@@ -49,6 +53,7 @@ export default function MyProfile() {
             <RiEditBoxLine />
           </IconBtn>
         </div>
+
         <p
           className={`${
             user?.additionalDetails?.about
