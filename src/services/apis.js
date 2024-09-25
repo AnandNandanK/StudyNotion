@@ -1,6 +1,8 @@
 
-// const BASE_URL = "https://studynotion-backend-02.onrender.com" 
-const BASE_URL = "https://studynotion-backend-02.onrender.com" 
+const BASE_URL = "https://studynotion-backend-02.onrender.com/api/v1/" 
+
+
+// const BASE_URL ="http://localhost:4000/api/v1"
 
 // AUTH ENDPOINTS
 export const endpoints = {
@@ -28,6 +30,7 @@ export const studentEndpoints = {
 // COURSE ENDPOINTS
 export const courseEndpoints = {
   GET_ALL_COURSE_API: BASE_URL + "/course/getAllCourses",
+  
   COURSE_DETAILS_API: BASE_URL + "/course/getCourseDetails",
   EDIT_COURSE_API: BASE_URL + "/course/editCourse",
   COURSE_CATEGORIES_API: BASE_URL + "/course/showAllCategories",
