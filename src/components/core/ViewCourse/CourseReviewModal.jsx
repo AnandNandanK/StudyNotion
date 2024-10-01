@@ -5,6 +5,7 @@ import ReactStars from "react-rating-stars-component"
 import { useSelector } from "react-redux"
 
 import { createRating } from "../../../services/operations/courseDetailsAPI"
+
 import IconBtn from "../../Common/IconBtn"
 
 export default function CourseReviewModal({ setReviewModal }) {
@@ -103,7 +104,9 @@ export default function CourseReviewModal({ setReviewModal }) {
               >
                 Cancel
               </button>
+
               <IconBtn text="Save" />
+
             </div>
           </form>
         </div>

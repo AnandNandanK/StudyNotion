@@ -105,6 +105,7 @@ export const addCourseDetails = async (data, token) => {
   return result
 }
 
+
 // edit the course details
 export const editCourseDetails = async (data, token) => {
   let result = null
@@ -381,7 +382,7 @@ export const createRating = async (data, token) => {
   } catch (error) {
     success = false
     console.log("CREATE RATING API ERROR............", error)
-    toast.error(error.message)
+    toast.error(error?.response?.data.message)
   }
   toast.dismiss(toastId)
   return success

@@ -66,6 +66,7 @@ exports.createRating = async (req, res) => {
   }
 }
 
+
 // Get the average rating for a course
 exports.getAverageRating = async (req, res) => {
   try {

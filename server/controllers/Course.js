@@ -145,6 +145,8 @@ exports.createCourse = async (req, res) => {
     })
   }
 }
+
+
 // Edit Course Details
 exports.editCourse = async (req, res) => {
   try {
@@ -214,6 +216,8 @@ exports.editCourse = async (req, res) => {
   }
 }
 // Get Course List
+
+
 exports.getAllCourses = async (req, res) => {
   try {
     const allCourses = await Course.find(
@@ -295,6 +299,8 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
+
+
 exports.getCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -332,6 +338,8 @@ exports.getCourseDetails = async (req, res) => {
     //   });
     // }
 
+
+    
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
       content.subSection.forEach((subSection) => {
@@ -356,6 +364,9 @@ exports.getCourseDetails = async (req, res) => {
     })
   }
 }
+
+
+
 exports.getFullCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -384,7 +395,6 @@ exports.getFullCourseDetails = async (req, res) => {
       userId: userId,
     })
 
-    console.log("courseProgressCount : ", courseProgressCount)
 
     if (!courseDetails) {
       return res.status(400).json({
@@ -399,6 +409,8 @@ exports.getFullCourseDetails = async (req, res) => {
     //     message: `Accessing a draft course is forbidden`,
     //   });
     // }
+
+    console.log("Course Content.......",courseDetails.courseContent)
 
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
@@ -439,6 +451,8 @@ exports.getInstructorCourses = async (req, res) => {
       instructor: instructorId,
     }).sort({ createdAt: -1 })
 
+
+
     // Return the instructor's courses
     res.status(200).json({
       success: true,
@@ -453,6 +467,8 @@ exports.getInstructorCourses = async (req, res) => {
     })
   }
 }
+
+
 // Delete the Course
 exports.deleteCourse = async (req, res) => {
   try {

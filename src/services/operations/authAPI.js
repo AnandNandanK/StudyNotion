@@ -14,6 +14,8 @@ const {
   RESETPASSWORD_API,
 } = endpoints
 
+
+
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
@@ -41,6 +43,8 @@ export function sendOtp(email, navigate) {
     toast.dismiss(toastId)
   }
 }
+
+
 
 export function signUp(
   accountType,
@@ -83,6 +87,8 @@ export function signUp(
   }
 }
 
+
+
 export function login(email, password, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
@@ -107,9 +113,10 @@ export function login(email, password, navigate) {
       dispatch(setUser({ ...response.data.user, image: userImage }))
       localStorage.setItem("token", JSON.stringify(response.data.token))
       navigate("/dashboard/my-profile")
+
     } catch (error) {
       console.log("LOGIN API ERROR............", error)
-      toast.error("Login Failed")
+      toast.error(error.response.data.message)
     }
     dispatch(setLoading(false))
     toast.dismiss(toastId)
@@ -169,6 +176,7 @@ export function resetPassword(password, confirmPassword, token, navigate) {
     dispatch(setLoading(false))
   }
 }
+
 
 export function logout(navigate) {
   return (dispatch) => {
